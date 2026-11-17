@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BigBased — Account UX Review (offline)</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#080808;color:#f8f4ed}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 72% 4%,#342108 0,transparent 45%),#080808}
+header{border-bottom:1px solid #30291a;padding:18px max(20px,6vw);display:flex;align-items:center;gap:15px;color:#f5bd32;font-weight:800}
+header strong{color:white;font-size:24px}header span{border:1px solid #6d5624;border-radius:30px;padding:6px 10px;font-size:11px}
+main{max-width:860px;margin:7vh auto;padding:20px}h1{font-size:clamp(28px,4vw,49px);margin:8px 0}p{color:#d8d3c9;line-height:1.6}
+.kicker{font-weight:800;letter-spacing:2px;color:#f5bd32;font-size:11px}.card{padding:28px;border:1px solid #443825;border-radius:18px;background:linear-gradient(160deg,#1d1a15,#111)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px 0}
+button{font:inherit;text-align:left;cursor:pointer;color:white;background:#201b13;border:1px solid #73591e;border-radius:12px;padding:18px}
+button:focus-visible,button:hover{outline:2px solid #e8ab24}button strong{display:block;margin-bottom:7px;font-size:16px}
+button small{color:#e0c88e}button.secondary{background:#171717;border-color:#424242}
+.note{border-left:3px solid #ffc33a;background:#1b1710;padding:15px;color:#e8dfd2;font-size:13px;line-height:1.6;min-height:70px}
+.sub{border-top:1px solid #4c422f;margin-top:24px;padding-top:18px}
+footer{font-size:12px;color:#aaa;margin:20px 0}
+@media(max-width:600px){main{margin:10px auto}.card{padding:18px}.grid{grid-template-columns:1fr}}
+</style></head>
+<body><header><strong>♛ BigBased</strong><span>IDENTITY UX · REVIEW ONLY</span></header>
+<main><div class="card"><div class="kicker">CREATE · BUILD · CONNECT</div><h1>Keep making great things.</h1>
+<p>Explore BigBased without an account. Your current Creator Vault stays on your device. Account saving and synchronization have not been activated.</p>
+<div class="grid"><button id="native"><strong>✉ BigBased email sign-in</strong><small>Planned primary option · Unavailable</small></button>
+<button id="oidc"><strong>◈ Continue with OpenTrestle</strong><small>Optional identity provider · Unavailable</small></button></div>
+<div id="detail" class="note" role="status" aria-live="polite">Choose an option to preview its design contract. Neither choice signs you in.</div>
+<div class="sub"><h2>Bring your guest projects with you—later.</h2><p>Future migration will require an actual BigBased account, selecting individual projects, resolving conflicts and confirming the destination. Signing in will never silently upload your vault.</p>
+<button id="migration" class="secondary">Preview guest transfer policy</button><p id="migrationNote" role="status" aria-live="polite"></p></div>
+</div>
+<footer>This page never sends email, creates a session, requests OAuth credentials, uploads files or deploys an identity service. Do not enter passwords or personal information here.</footer>
+</main>
+<script>
+'use strict';
+const detail=document.querySelector('#detail');
+document.querySelector('#native').addEventListener('click',()=>detail.textContent='Planned: BigBased-owned verified email flow and independent BigBased session. There is no live sign-in endpoint or email sender.');
+document.querySelector('#oidc').addEventListener('click',()=>detail.textContent='Optional: an approved BigBased OIDC relying party will use a verified issuer at OpenTrestle, validate tokens on its own backend and create a separate BigBased session. Matching emails never merge accounts. This flow is not connected.');
+document.querySelector('#migration').addEventListener('click',()=>document.querySelector('#migrationNote').textContent='REVIEW ONLY: require account proof, explicit per-project selection, consent and conflict resolution before any future import. No data was read or transferred by this preview.');
+</script></body></html>
